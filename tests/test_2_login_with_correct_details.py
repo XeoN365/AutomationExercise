@@ -17,15 +17,6 @@ def element_present(driver, by, element_code):
     return element_present
 
 
-def random_string(string_length=1):
-    alphabet_lower = list(string.ascii_lowercase)
-    alphabet_upper = list(string.ascii_uppercase)
-    alphabet = alphabet_lower + alphabet_upper
-    if string_length == 1:
-        string_length = random.randint(3, 10)
-    return random.sample(alphabet, string_length)
-
-
 def register_first(driver, user_data):
     # Click login button
     login_button = driver.find_element(By.XPATH, '//a[@href="/login"]')
