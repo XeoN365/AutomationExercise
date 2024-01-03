@@ -45,5 +45,6 @@ def test_case(init_driver, user_data):
     sign_up_button = driver.find_element(By.XPATH, '//button[@data-qa="signup-button"]')
     sign_up_button.click()
 
+    # Verify that error message is displayed
     email_in_use_text = driver.find_element(By.XPATH, '//form[@action="/signup"]/p')
     assert email_in_use_text.text == "Email Address already exist!"

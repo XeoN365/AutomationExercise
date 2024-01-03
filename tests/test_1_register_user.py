@@ -47,7 +47,7 @@ def test_case(init_driver, user_data):
     sign_up_button = driver.find_element(By.XPATH, '//button[@data-qa="signup-button"]')
     sign_up_button.click()
 
-    ###Registration form
+    ### Registration form
     # find title radio buttons and click appropriate one
     title_radio = driver.find_element(
         By.XPATH, f'//input[@value="{user_data["title"]}"]'
@@ -56,6 +56,7 @@ def test_case(init_driver, user_data):
 
     # find name textbox and fill it with person's name
     name2_textbox = driver.find_element(By.XPATH, '//input[@data-qa="name"]')
+
     # clear it first before filling it
     name2_textbox.clear()
     name2_textbox.send_keys(f"{user_data['first_name']} {user_data['last_name']}")
@@ -112,6 +113,7 @@ def test_case(init_driver, user_data):
     )
     mobile_number_textbox.send_keys(user_data["phone"])
 
+    # find register button and click it
     register_button = driver.find_element(
         By.XPATH, '//button[@data-qa="create-account"]'
     )
@@ -125,6 +127,7 @@ def test_case(init_driver, user_data):
     )
     assert account_created_text_present == True
 
+    # find continue button and click it
     continue_button = driver.find_element(By.XPATH, '//a[@data-qa="continue-button"]')
     continue_button.click()
 
@@ -137,12 +140,13 @@ def test_case(init_driver, user_data):
         == "Logged in as " + user_data["first_name"] + " " + user_data["last_name"]
     )
 
-    # Delete account
+    # Find delete account button and click it
     delete_account_button = driver.find_element(
         By.XPATH, '//a[@href="/delete_account"]'
     )
     delete_account_button.click()
 
+    # verify there's label saying "Account Deleted!"
     account_deleted_text_present = element_present(
         driver,
         By.XPATH,
