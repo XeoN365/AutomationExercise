@@ -1,0 +1,44 @@
+import pytest
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import os
+
+
+@pytest.fixture
+def user_data():
+    person = dict()
+    person["title"] = "Mr"
+    person["first_name"] = "George"
+    person["last_name"] = "Kutanga"
+    person["gender"] = "Male"
+    person["email"] = "george.kutanga@testing.com"
+    person["phone"] = "+447758875436"
+    person["username"] = "george.kutanga"
+    person["password"] = "randompassword"
+    person["dob"] = (21, 12, 1990)
+    person["address"] = "123 Main Street"
+    person["city"] = "Los Angelios"
+    person["country"] = "United States"
+    person["state"] = "CA"
+    person["postcode"] = "TE5 1AA"
+    return person
+
+
+@pytest.fixture
+def init_driver():
+    chrome_options = Options()
+    chrome_options.add_argument(
+        f"--load-extension={os.getcwd()}/tests/extensions/cfhdojbkjhnklbpkdaibdccddilifddb/3.21.1_0/"
+    )
+    driver = webdriver.Chrome(options=chrome_options)
+    driver.implicitly_wait(5)
+
+    # wait for adblock page to be loaded and close it
+    wait = WebDriverWait(driver, 10)
+    wait.until(EC.number_of_windows_to_be(2))
+    driver.switch_to.window(driver.window_handles[0])
+
+    yield driver
+    driver.quit()
