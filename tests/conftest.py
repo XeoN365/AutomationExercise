@@ -8,6 +8,23 @@ import os
 
 @pytest.fixture
 def user_data():
+    """Definition of user data for test
+    Returns: dictionary containing:
+    - title: string
+    - first_name: string
+    - last_name: string
+    - gender: string
+    - email: string
+    - phone: string
+    - username: string
+    - password: string
+    - dob: tuple(day,month,year) as ints
+    - address: string
+    - city: string
+    - country: string
+    - state: string
+    - postcode: string
+    """
     person = dict()
     person["title"] = "Mr"
     person["first_name"] = "George"
@@ -28,6 +45,7 @@ def user_data():
 
 @pytest.fixture
 def init_driver():
+    """Initiate driver for test"""
     chrome_options = Options()
     chrome_options.add_argument(
         f"--load-extension={os.getcwd()}/tests/extensions/cfhdojbkjhnklbpkdaibdccddilifddb/3.21.1_0/"
