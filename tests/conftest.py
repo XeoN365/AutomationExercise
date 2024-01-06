@@ -31,7 +31,7 @@ def user_data():
     person["last_name"] = "Kutanga"
     person["gender"] = "Male"
     person["email"] = "george.kutanga@testing.com"
-    person["phone"] = "+447758875436"
+    person["mobile_number"] = "+447758875436"
     person["username"] = "george.kutanga"
     person["password"] = "randompassword"
     person["dob"] = (21, 12, 1990)
@@ -39,7 +39,7 @@ def user_data():
     person["city"] = "Los Angelios"
     person["country"] = "United States"
     person["state"] = "CA"
-    person["postcode"] = "TE5 1AA"
+    person["zipcode"] = "TE5 1AA"
     return person
 
 
