@@ -22,3 +22,7 @@ def random_string(string_length=1):
     if string_length == 1:
         string_length = random.randint(3, 10)
     return "".join(random.sample(alphabet, string_length))
+
+
+def random_email():
+    return random_string() + "@" + random_string() + ".com"

@@ -1,4 +1,5 @@
 from seleniumpagefactory.Pagefactory import PageFactory
+from utils import utils
 
 
 class LoginPage(PageFactory):
@@ -19,10 +20,14 @@ class LoginPage(PageFactory):
     }
 
     def check_new_user_label(self):
-        assert self.new_user_label.get_text() == "New User Signup!"
+        assert (
+            self.new_user_label.get_text() == "New User Signup!"
+        ), "New user signup label is not displayed!"
 
     def check_login_label(self):
-        assert self.login_label.get_text() == "Login to your account"
+        assert (
+            self.login_label.get_text() == "Login to your account"
+        ), "Login label is not displayed!"
 
     def signup_enter_name(self, name):
         self.signup_name_textbox.set_text(name)
@@ -36,8 +41,8 @@ class LoginPage(PageFactory):
     def login_enter_email(self, email):
         self.login_email_textbox.set_text(email)
 
-    def login_enter_password(self, password):
-        self.login_password_textbox.set_text(password)
+    def login_enter_password(self, email):
+        self.login_password_textbox.set_text(email)
 
     def click_login(self):
         self.login_button.click_button()
@@ -46,7 +51,19 @@ class LoginPage(PageFactory):
         assert (
             self.incorrect_login_label.get_text()
             == "Your email or password is incorrect!"
-        )
+        ), "Incorrect login label is not displayed!"
 
     def check_incorrect_signup_label(self):
-        assert self.incorrect_signup_label.get_text() == "Email Address already exist!"
+        assert (
+            self.incorrect_signup_label.get_text() == "Email Address already exist!"
+        ), "Incorrect signup label is not displayed!"
+
+    def login_user(self, email, password):
+        self.login_enter_email(email)
+        self.login_enter_password(password)
+        self.click_login()
+
+    def signup_user(self, name, email):
+        self.signup_enter_name(name)
+        self.signup_enter_email(email)
+        self.click_signup()

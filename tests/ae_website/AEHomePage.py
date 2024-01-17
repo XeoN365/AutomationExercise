@@ -19,8 +19,10 @@ class HomePage(PageFactory):
     def login(self):
         self.login_button.click_button()
 
-    def check_login_status(self, name):
-        assert self.login_status.get_text() == f"Logged in as {name}"
+    def check_login_status(self, first_name, last_name):
+        assert (
+            self.login_status.get_text() == f"Logged in as {first_name} {last_name}"
+        ), "'Logged in as' label is not displayed!"
 
     def delete_account(self):
         self.delete_account_button.click_button()

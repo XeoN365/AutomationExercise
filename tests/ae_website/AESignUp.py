@@ -72,3 +72,20 @@ class SignUpPage(PageFactory):
 
     def register(self):
         self.register_button.click_button()
+
+    def register_user(self, user_data):
+        self.select_title(user_data["title"])
+        self.enter_name(f"{user_data['first_name']} {user_data['last_name']}")
+        self.enter_password(user_data["password"])
+        self.select_dob(user_data["dob"][0], user_data["dob"][1], user_data["dob"][2])
+        self.check_newsletter()
+        self.check_special_offers()
+        self.enter_first_name(user_data["first_name"])
+        self.enter_last_name(user_data["last_name"])
+        self.enter_address(user_data["address"])
+        self.select_country(user_data["country"])
+        self.enter_state(user_data["state"])
+        self.enter_city(user_data["city"])
+        self.enter_zipcode(user_data["zipcode"])
+        self.enter_mobile_number(user_data["mobile_number"])
+        self.register()

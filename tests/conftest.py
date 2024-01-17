@@ -4,6 +4,11 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import os
+from ae_website.AELoginPage import LoginPage
+from ae_website.AEAccountAction import AccountActionPage
+from ae_website.AESignUp import SignUpPage
+from ae_website.AEHomePage import HomePage
+from utils import utils
 
 
 @pytest.fixture
@@ -40,13 +45,14 @@ def user_data():
     person["country"] = "United States"
     person["state"] = "CA"
     person["zipcode"] = "TE5 1AA"
-    return person
+    yield person
 
 
 @pytest.fixture
 def init_driver():
     """Initiate driver for test"""
     chrome_options = Options()
+    # Load Adblock extension
     chrome_options.add_argument(
         f"--load-extension={os.getcwd()}/tests/extensions/cfhdojbkjhnklbpkdaibdccddilifddb/3.21.1_0/"
     )

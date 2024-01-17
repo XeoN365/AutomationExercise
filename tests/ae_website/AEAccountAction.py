@@ -13,11 +13,13 @@ class AccountActionPage(PageFactory):
 
     def verify_account_created(self):
         label = self.account_created_label.get_text()
-        assert label == "ACCOUNT CREATED!"
+        assert label == "ACCOUNT CREATED!", "Account created label is not displayed!"
+        self.click_continue()
 
     def verify_account_deleted(self):
         label = self.account_deleted_label.get_text()
-        assert label == "ACCOUNT DELETED!"
+        assert label == "ACCOUNT DELETED!", "Account deleted label is not displayed!"
+        self.click_continue()
 
     def click_continue(self):
         self.continue_button.click_button()
